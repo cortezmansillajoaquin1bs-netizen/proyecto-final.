@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Precios de Alimentos | Desafío Web I</title>
+    <link rel="stylesheet" href="carpeta css\styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Simulador Web de Crisis Económica</h1>
+        <p>Haciendo visible el impacto de la inflación en el canastón familiar</p>
+    </header>
+
+    <nav>
+        <a href="#contexto">Contexto</a>
+        <a href="#simulador">Simulador</a>
+        <a href="#casos">Casos de Prueba</a>
+        <a href="#conclusiones">Conclusiones</a>
+    </nav>
+
+    <main>
+        
+        <section id="contexto" class="tarjeta-seccion">
+            <h2>Contexto: El Problema y la Solución</h2>
+            
+            <figure class="contenedor-imagen">
+                <img src="imageneds\images (1).jpg" alt="Impacto en los precios de los mercados" class="imagen-fluida">
+                <figcaption>El incremento de precios afecta directamente el poder adquisitivo del hogar.</figcaption>
+            </figure>
+
+            <h3>Análisis del Problema Actual</h3>
+            <p>La inestabilidad económica que enfrentan las familias se origina por una combinación de factores que impactan directamente en la canasta básica. Para entender este fenómeno, el problema se divide en cuatro dimensiones principales:</p>
+            
+            <ul style="margin-left: 20px; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><strong>1. Conflictos Logísticos y de Transporte:</strong> Los bloqueos de carreteras y el desabastecimiento de carburantes dificultan el traslado de productos agrícolas hacia los mercados urbanos, encareciendo los costos operativos.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>2. Especulación y Compras por Pánico:</strong> Los constantes rumores de escasez provocan que las personas compren más de lo habitual, agotando el stock disponible y generando una subida de precios artificial por alta demanda.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>3. Inflación de Productos Básicos:</strong> Artículos de consumo diario e indispensable (como el arroz, la papa o el aceite) sufren incrementos de precio repentinos en periodos muy cortos de tiempo.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>4. Pérdida del Poder Adquisitivo:</strong> Las familias mantienen el mismo nivel de ingresos salariales, pero el dinero rinde menos, forzando a los hogares a comprar menos cantidad o reducir su calidad de vida.</li>
+            </ul>
+
+            <h3>Nuestra Solución Tecnológica</h3>
+            <p>Frente a este escenario, esta plataforma interactiva nace como una herramienta de apoyo financiero y educativo. Al registrar los precios antiguos y actuales, el sistema automatiza el cálculo de la fuga de dinero mensual y clasifica el nivel de alerta económica. Esto permite a cualquier persona medir el daño real en su bolsillo con matemáticas simples, ayudando a tomar decisiones de contingencia informadas para proteger la economía del hogar.</p>
+        </section>
+
+        <section id="simulador" class="tarjeta-seccion">
+            <h2>Simulador de Precios de Alimentos</h2>
+            <p>Introduce los datos de un producto básico para evaluar el incremento de gastos diarios.</p>
+            
+            <form id="formulario-simulador">
+                <div class="grupo-control">
+                    <label for="producto">Nombre del Producto:</label>
+                    <input type="text" id="producto" placeholder="Ej. Arroz, Papa, Aceite">
+                </div>
+                <div class="grupo-control">
+                    <label for="precio-inicial">Precio Anterior (Bs):</label>
+                    <input type="number" id="precio-inicial" step="0.1" min="0.01" placeholder="0.00">
+                </div>
+                <div class="grupo-control">
+                    <label for="precio-actual">Precio Actual (Bs):</label>
+                    <input type="number" id="precio-actual" step="0.1" min="0.01" placeholder="0.00">
+                </div>
+                <div class="grupo-control">
+                    <label for="cantidad-semana">Cantidad Consumida por Semana:</label>
+                    <input type="number" id="cantidad-semana" min="1" placeholder="Ej. 2">
+                </div>
+                <div class="grupo-control">
+                    <label for="semanas">Número de Semanas a Evaluar:</label>
+                    <input type="number" id="semanas" min="1" max="52" value="4">
+                </div>
+
+                <div class="botones-contenedor">
+                    <button type="button" id="btn-calcular" class="btn-accion">Calcular Impacto</button>
+                    <button type="button" id="btn-limpiar" class="btn-limpiar">Limpiar Datos</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="resultados" class="tarjeta-seccion oculto">
+            <h2>Resultados del Análisis</h2>
+            
+            <div class="malla-resultados">
+                <div class="tarjeta-resultado">
+                    <h3>Incremento por Unidad</h3>
+                    <p id="res-incremento">0.00 Bs</p>
+                </div>
+                <div class="tarjeta-resultado">
+                    <h3>Porcentaje de Aumento</h3>
+                    <p id="res-porcentaje">0%</p>
+                </div>
+                <div class="tarjeta-resultado">
+                    <h3>Gasto Total Anterior</h3>
+                    <p id="res-gasto-anterior">0.00 Bs</p>
+                </div>
+                <div class="tarjeta-resultado">
+                    <h3>Gasto Total Actual</h3>
+                    <p id="res-gasto-actual">0.00 Bs</p>
+                </div>
+                <div class="tarjeta-resultado" style="grid-column: 1 / -1;">
+                    <h3>Clasificación del Nivel de Gasto</h3>
+                    <p id="res-clasificacion" style="text-transform: uppercase;">Midiendo...</p>
+                </div>
+            </div>
+
+            <div class="resumen-final">
+                <h3>Diferencia de Gasto Total:</h3>
+                <p id="res-diferencia">Estás gastando 0.00 Bs más.</p>
+            </div>
+        </section>
+
+        <section id="casos" class="tarjeta-seccion">
+            <h2>Casos de Estudio para Probar</h2>
+            <div class="tabla-responsiva">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio Anterior</th>
+                            <th>Precio Actual</th>
+                            <th>Cantidad Mensual</th>
+                            <th>Resultado Esperado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Arroz</strong></td><td>8 Bs</td><td>11 Bs</td><td>10 unidades</td><td>Gasto Ant: 80Bs | Gasto Act: 110Bs | Dif: +30Bs</td></tr>
+                        <tr><td><strong>Papa</strong></td><td>7 Bs</td><td>10 Bs</td><td>8 unidades</td><td>Gasto Ant: 56Bs | Gasto Act: 80Bs | Dif: +24Bs</td></tr>
+                        <tr><td><strong>Aceite</strong></td><td>12 Bs</td><td>18 Bs</td><td>4 unidades</td><td>Gasto Ant: 48Bs | Gasto Act: 72Bs | Dif: +24Bs</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="conclusiones" class="tarjeta-seccion">
+            <h2>Conclusiones del Modelo</h2>
+            <p>Este simulador evidencia de manera cuantitativa cómo el aumento de precios en situaciones de bloqueos o escasez reduce severamente el poder adquisitivo. Visualizar estos datos permite a las familias gestionar mejor sus prioridades de consumo y comprender el impacto directo de los conflictos sociales en su economía diaria.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Proyecto de Evaluación Final</p>
+        <p>Desarrollado por: <strong>Estudiante de Programación Web I</strong></p>
+        <p style="margin-top: 10px;">
+            Código fuente disponible en: 
+            <a href="https://github.com/yadsiadax/anievent2026/" target="_blank" style="color: #18bc9c; font-weight: bold; text-decoration: underline;">Mi Repositorio de GitHub</a>
+            <a href="https://github.com/yadsiadax/anievent2026/" target="_blank" style="color: #18bc9c; font-weight: bold; text-decoration: underline;">Mi pagina en vivo</a>
+        </p>
+        </p>
+    </footer>
+
+    <script src="carpeta js\script.js"></script>
+</body>
+</html>
